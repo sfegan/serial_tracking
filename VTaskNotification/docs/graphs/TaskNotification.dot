@@ -1,0 +1,36 @@
+digraph TaskNotification
+{
+	fontname=Helvetica;
+	node [fontname=Helvetica, shape=ellipse, color=black];
+	edge [fontname=Helvetica];	
+
+	user         [label="User", shape=hexagon, color=blue, fontcolor=blue]
+
+	doTask       [label="TaskNotification\ndoTask()"];
+	doTaskProxy  [label="TNProxyTask\ndoTask()"];
+	run          [label="TaskProcessor\nrun()"];
+	fetchTask    [label="TaskList\nfetchTask()"];
+	wait         [label="JTCMonitor\nwait()", shape=box, color=red];
+	notify       [label="JTCMonitor\nnotify()", shape=box, color=red];
+	scheduleTask [label="TaskList\nscheduleTask()"]
+
+	scheduleNote [label="NotificationList\nscheduleNotification()"];
+	sendAlert    [label="AsyncAlerter\nsendAlert()"];
+	receiveAlert [label="AsyncAlerter\nreceiveAlert()"];
+	processAll   [label="NotificationList\nprocessAllNotifications()"];
+	doNote       [label="taskNotification\ndoNotification()"];
+
+
+	doTask -> doTaskProxy [label="1", dir=back];
+	doTaskProxy -> run -> fetchTask -> wait [dir=back];
+	wait -> notify [color=red, fontcolor=red, dir=back, label="pthreads"];
+	notify -> scheduleTask -> user [dir=back];
+
+	doTaskProxy -> scheduleNote [label="2"]
+	scheduleNote -> sendAlert;
+	sendAlert -> receiveAlert [label="somehow", fontcolor=darkgreen, color=darkgreen];
+	receiveAlert -> processAll -> doNote;
+
+	subgraph clusterThreadTask { style=dashed; label="Task thread"; { rank=same; doTask scheduleNote } doTask doTaskProxy run fetchTask wait scheduleNote sendAlert };
+	subgraph clusterThreadmain { style=dashed; label="GUI\nthread"; notify scheduleTask user receiveAlert processAll doNote };
+};

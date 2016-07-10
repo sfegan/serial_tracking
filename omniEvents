@@ -1,0 +1,112 @@
+#! /bin/sh
+#
+# omniEvents       Start/Stop omniEvents service
+#
+# chkconfig: 345 14 86
+# description: CORBA events service
+# processname: omniEvents
+
+
+# Source function library.
+. /etc/init.d/functions
+
+# Get config.
+if [ -f /etc/sysconfig/network ]
+then
+    . /etc/sysconfig/network
+else
+    echo $"Networking not configured - exiting"
+    exit 1
+fi
+
+prog="omniEvents"
+
+nameclt=/usr/local/bin/nameclt
+eventc=/usr/local/bin/eventc
+
+# Check that networking is up.
+if [ "$NETWORKING" = "no" ]
+then
+	exit 0
+fi
+
+RETVAL=0
+
+start() {
+        echo -n $"Starting $prog: "
+
+	ns_ior=corbaname::localhost
+	
+	rm -f /var/run/omnievents*
+	$nameclt -ior $ns_ior unbind SerialTrackingEventChannel > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind EventChannelFactory > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS 2>&1 > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS/serial_tracking.Program > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS/serial_tracking0.Program > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS/serial_tracking1.Program > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS/serial_tracking2.Program > /dev/null 2>&1
+	$nameclt -ior $ns_ior bind_new_context VERITAS/serial_tracking3.Program > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind VERITAS/serial_tracking.Program/EventChannel.Object > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind VERITAS/serial_tracking0.Program/EventChannel.Object > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind VERITAS/serial_tracking1.Program/EventChannel.Object > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind VERITAS/serial_tracking2.Program/EventChannel.Object > /dev/null 2>&1
+	$nameclt -ior $ns_ior unbind VERITAS/serial_tracking3.Program/EventChannel.Object > /dev/null 2>&1
+        daemon /usr/local/veritas/bin/start_bg.rb \
+		/var/run/omniEvents.pid \
+		/usr/local/sbin/omniEvents -l /var/run -ORBInitRef NameService=$ns_ior
+        RETVAL=$?
+        echo
+	if [ $RETVAL -eq 0 ]
+	then
+        	touch /var/lock/subsys/omniEvents
+		$eventc -ORBInitRef NameService=$ns_ior -n SerialTrackingEventChannel -v
+		channel_ior=$($nameclt -ior corbaname::localhost resolve SerialTrackingEventChannel)
+		$nameclt -ior $ns_ior bind VERITAS/serial_tracking.Program/EventChannel.Object $channel_ior > /dev/null 2>&1
+		$nameclt -ior $ns_ior bind VERITAS/serial_tracking0.Program/EventChannel.Object $channel_ior > /dev/null 2>&1
+		$nameclt -ior $ns_ior bind VERITAS/serial_tracking1.Program/EventChannel.Object $channel_ior > /dev/null 2>&1
+		$nameclt -ior $ns_ior bind VERITAS/serial_tracking2.Program/EventChannel.Object $channel_ior > /dev/null 2>&1
+		$nameclt -ior $ns_ior bind VERITAS/serial_tracking3.Program/EventChannel.Object $channel_ior > /dev/null 2>&1
+	fi
+
+	return $RETVAL
+}
+
+
+stop() {
+        echo -n $"Stopping $prog: "
+        killproc omniEvents
+	rm -f /var/run/omnievents*
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/omniEvents
+	return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+	status omniEvents
+	;;
+  restart|reload)
+	restart
+	;;
+  condrestart)
+	[ -f /var/lock/subsys/omniEvents ] && restart || :
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|reload|condrestart}"
+	exit 1
+esac
+
+exit $?

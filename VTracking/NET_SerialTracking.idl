@@ -1,0 +1,96 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_SerialTracking.idl
+ * \brief Simple CORBA interface to single telescope controller
+ *
+ * This defines the simple CORBA interface to the (single) telescope
+ * controller.
+ *
+ * Original Author: Stephen Fegan
+ * $Author: sfegan $
+ * $Date: 2007/01/21 11:46:37 $
+ * $Revision: 2.6 $
+ * $Tag$
+ *
+ **/
+
+#ifndef NET_SERIALTRACKING_IDL
+#define NET_SERIALTRACKING_IDL
+
+#include "NET_SerialTracking_data.idl"
+
+module VSerialTracking
+{
+  // progName - name of subsystem program.
+  const string progName = "serial_tracking";
+    
+  interface SimpleCommand
+  {
+    void nAlive();
+
+    void nGetAzElTargetDetails(out double az_rad,
+			       out double el_rad,
+			       out boolean use_corrections,
+			       out boolean use_convergent_pointing)
+      raises ( WrongTargetType );
+
+    // This returns details of a RA/Dec type target. In On/Off mode the
+    // "offset_time_sidereal_min" return the size of the offset in minutes,
+    // usually +/-30. In wobble mode, "wobble_offset_rad" returns the size
+    // of the wobble in radians, while "wobble_direction_rad" returns the
+    // direction of the wobble (0=North, Pi/2=East, Pi=South, 3Pi/2=West).
+
+    void nGetRADecTargetDetails(out double ra_rad,
+				out double dec_rad,
+				out double epoch,
+				out double offset_time_sidereal_min,
+				out double wobble_offset_rad,
+				out double wobble_direction_rad,
+				out string name,
+				out boolean use_convergent_pointing)
+      raises ( WrongTargetType );
+
+    // Most of this is obvious I think. The "target_ra_rad" and 
+    // "target_dec_rad" variables hold the apparent RA and Dec of the
+    // target in the current epoch, while a call to nGetRADecTargetDetails
+    // will give you the coordinates of the target BEFORE any offsets are
+    // added (On/Off/Wobble) and BEFORE precession etc.
+    void nGetStatus(out double mjd,
+		    out boolean error,
+		    out boolean interlock,
+		    out boolean limits_hit,
+		    out boolean is_stopped,
+		    out TargetObjectType target_type,
+		    out double scope_az_rad, out double scope_el_rad,
+		    out double target_az_rad, out double target_el_rad,
+		    out double target_ra_rad, out double target_dec_rad,
+		    out double slew_time_sec);
+
+    void nStop() 
+      raises ( CommandsNotPermitted );
+    void nSlewToStow() 
+      raises ( CommandsNotPermitted, NotStopped );
+    void nSlewToZenith() 
+      raises ( CommandsNotPermitted, NotStopped );
+    void nSlewToAzEl(in double az_rad, in double el_rad, 
+		     in boolean use_corrections,
+		     in boolean use_convergent_pointing)
+      raises ( CommandsNotPermitted, NotStopped );
+    void nTrackTargetOnOff(in double ra_rad, in double dec_rad,
+			   in double epoch, 
+			   in double offset_time_sidereal_min, 
+			   in double wobble_offset_rad,
+			   in double wobble_direction_rad,
+			   in string name,
+			   in boolean use_convergent_pointing)
+      raises ( CommandsNotPermitted, NotStopped );
+
+    // objName - name of this object
+    const string objName = "SimpleCommand";
+  };
+
+};
+
+#endif // NET_SERIALTRACKING_IDL
+

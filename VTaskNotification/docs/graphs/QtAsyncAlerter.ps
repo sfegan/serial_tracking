@@ -1,0 +1,490 @@
+%!PS-Adobe-2.0
+%%Creator: dot version 1.7.14 (Fri Jul  5 09:15:50 MST 2002)
+%%For: (sfegan) Stephen Fegan
+%%Title: QtAsyncAlerter
+%%Pages: (atend)
+%%BoundingBox: 35 35 307 937
+%%EndComments
+save
+%%BeginProlog
+/DotDict 200 dict def
+DotDict begin
+
+/setupLatin1 {
+mark
+/EncodingVector 256 array def
+ EncodingVector 0
+
+ISOLatin1Encoding 0 255 getinterval putinterval
+
+EncodingVector
+  dup 306 /AE
+  dup 301 /Aacute
+  dup 302 /Acircumflex
+  dup 304 /Adieresis
+  dup 300 /Agrave
+  dup 305 /Aring
+  dup 303 /Atilde
+  dup 307 /Ccedilla
+  dup 311 /Eacute
+  dup 312 /Ecircumflex
+  dup 313 /Edieresis
+  dup 310 /Egrave
+  dup 315 /Iacute
+  dup 316 /Icircumflex
+  dup 317 /Idieresis
+  dup 314 /Igrave
+  dup 334 /Udieresis
+  dup 335 /Yacute
+  dup 376 /thorn
+  dup 337 /germandbls
+  dup 341 /aacute
+  dup 342 /acircumflex
+  dup 344 /adieresis
+  dup 346 /ae
+  dup 340 /agrave
+  dup 345 /aring
+  dup 347 /ccedilla
+  dup 351 /eacute
+  dup 352 /ecircumflex
+  dup 353 /edieresis
+  dup 350 /egrave
+  dup 355 /iacute
+  dup 356 /icircumflex
+  dup 357 /idieresis
+  dup 354 /igrave
+  dup 360 /dcroat
+  dup 361 /ntilde
+  dup 363 /oacute
+  dup 364 /ocircumflex
+  dup 366 /odieresis
+  dup 362 /ograve
+  dup 365 /otilde
+  dup 370 /oslash
+  dup 372 /uacute
+  dup 373 /ucircumflex
+  dup 374 /udieresis
+  dup 371 /ugrave
+  dup 375 /yacute
+  dup 377 /ydieresis  
+
+% Set up ISO Latin 1 character encoding
+/starnetISO {
+        dup dup findfont dup length dict begin
+        { 1 index /FID ne { def }{ pop pop } ifelse
+        } forall
+        /Encoding EncodingVector def
+        currentdict end definefont
+} def
+/Times-Roman starnetISO def
+/Times-Italic starnetISO def
+/Times-Bold starnetISO def
+/Times-BoldItalic starnetISO def
+/Helvetica starnetISO def
+/Helvetica-Oblique starnetISO def
+/Helvetica-Bold starnetISO def
+/Helvetica-BoldOblique starnetISO def
+/Courier starnetISO def
+/Courier-Oblique starnetISO def
+/Courier-Bold starnetISO def
+/Courier-BoldOblique starnetISO def
+cleartomark
+} bind def
+
+%%BeginResource: procset
+/coord-font-family /Times-Roman def
+/default-font-family /Times-Roman def
+/coordfont coord-font-family findfont 8 scalefont def
+
+/InvScaleFactor 1.0 def
+/set_scale {
+	dup 1 exch div /InvScaleFactor exch def
+	dup scale
+} bind def
+
+% styles
+/solid { } bind def
+/dashed { [9 InvScaleFactor mul dup ] 0 setdash } bind def
+/dotted { [1 InvScaleFactor mul 6 InvScaleFactor mul] 0 setdash } bind def
+/invis {/fill {newpath} def /stroke {newpath} def /show {pop newpath} def} bind def
+/bold { 2 setlinewidth } bind def
+/filled { } bind def
+/unfilled { } bind def
+/rounded { } bind def
+/diagonals { } bind def
+
+% hooks for setting color 
+/nodecolor { sethsbcolor } bind def
+/edgecolor { sethsbcolor } bind def
+/graphcolor { sethsbcolor } bind def
+/nopcolor {pop pop pop} bind def
+
+/beginpage {	% i j npages
+	/npages exch def
+	/j exch def
+	/i exch def
+	/str 10 string def
+	npages 1 gt {
+		gsave
+			coordfont setfont
+			0 0 moveto
+			(\() show i str cvs show (,) show j str cvs show (\)) show
+		grestore
+	} if
+} bind def
+
+/set_font {
+	findfont exch
+	scalefont setfont
+} def
+
+% draw aligned label in bounding box aligned to current point
+/alignedtext {			% width adj text
+	/text exch def
+	/adj exch def
+	/width exch def
+	gsave
+		width 0 gt {
+			text stringwidth pop adj mul 0 rmoveto
+		} if
+		[] 0 setdash
+		text show
+	grestore
+} def
+
+/boxprim {				% xcorner ycorner xsize ysize
+		4 2 roll
+		moveto
+		2 copy
+		exch 0 rlineto
+		0 exch rlineto
+		pop neg 0 rlineto
+		closepath
+} bind def
+
+/ellipse_path {
+	/ry exch def
+	/rx exch def
+	/y exch def
+	/x exch def
+	matrix currentmatrix
+	newpath
+	x y translate
+	rx ry scale
+	0 0 1 0 360 arc
+	setmatrix
+} bind def
+
+/endpage { showpage } bind def
+
+/layercolorseq
+	[	% layer color sequence - darkest to lightest
+		[0 0 0]
+		[.2 .8 .8]
+		[.4 .8 .8]
+		[.6 .8 .8]
+		[.8 .8 .8]
+	]
+def
+
+/setlayer {/maxlayer exch def /curlayer exch def
+	layercolorseq curlayer get
+	aload pop sethsbcolor
+	/nodecolor {nopcolor} def
+	/edgecolor {nopcolor} def
+	/graphcolor {nopcolor} def
+} bind def
+
+/onlayer { curlayer ne {invis} if } def
+
+/onlayers {
+	/myupper exch def
+	/mylower exch def
+	curlayer mylower lt
+	curlayer myupper gt
+	or
+	{invis} if
+} def
+
+/curlayer 0 def
+
+%%EndResource
+%%EndProlog
+%%BeginSetup
+14 default-font-family set_font
+1 setmiterlimit
+% /arrowlength 10 def
+% /arrowwidth 5 def
+
+% make sure pdfmark is harmless for PS-interpreters other than Distiller
+/pdfmark where {pop} {userdict /pdfmark /cleartomark load put} ifelse
+% make '<<' and '>>' safe on PS Level 1 devices
+/languagelevel where {pop languagelevel}{1} ifelse
+2 lt {
+    userdict (<<) cvn ([) cvn load put
+    userdict (>>) cvn ([) cvn load put
+} if
+
+%%EndSetup
+%%Page: 1 1
+%%PageBoundingBox: 36 36 307 937
+%%PageOrientation: Portrait
+gsave
+35 35 272 902 boxprim clip newpath
+36 36 translate
+0 0 1 beginpage
+0 0 translate 0 rotate
+[ /CropBox [36 36 307 937] /PAGES pdfmark
+0.000 0.000 0.000 graphcolor
+14.00 /Helvetica set_font
+% clusterThreadTask
+gsave 10 dict begin
+dashed
+newpath 36 640 moveto
+234 640 lineto
+234 892 lineto
+36 892 lineto
+closepath
+stroke
+gsave 10 dict begin
+81 877 moveto 77 -0.5 (Task thread) alignedtext
+end grestore
+end grestore
+% clusterThreadmain
+gsave 10 dict begin
+dashed
+newpath 8 8 moveto
+262 8 lineto
+262 602 lineto
+8 602 lineto
+closepath
+stroke
+gsave 10 dict begin
+37 587 moveto 31 -0.5 (GUI) alignedtext
+37 571 moveto 44 -0.5 (thread) alignedtext
+end grestore
+end grestore
+
+%	sendAlert
+gsave 10 dict begin
+135 838 69 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 841 moveto 110 -0.5 (QtAsyncAlerter) alignedtext
+135 825 moveto 76 -0.5 (sendAlert\(\)) alignedtext
+end grestore
+end grestore
+
+%	sendNotice
+gsave 10 dict begin
+135 748 91 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 751 moveto 153 -0.5 (QtGUIThreadNotifier) alignedtext
+135 735 moveto 86 -0.5 (sendNotice\(\)) alignedtext
+end grestore
+end grestore
+
+%	sendAlert -> sendNotice
+newpath 135 812 moveto
+135 803 135 793 135 784 curveto
+stroke
+newpath 133 784 moveto
+135 774 lineto
+138 784 lineto
+closepath
+fill
+
+%	receiveAlert
+gsave 10 dict begin
+135 42 69 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 45 moveto 110 -0.5 (QtAsyncAlerter) alignedtext
+135 29 moveto 93 -0.5 (receiveAlert\(\)) alignedtext
+end grestore
+end grestore
+
+%	pipeWrite
+gsave 10 dict begin
+0.000 1.000 1.000 nodecolor
+newpath 186 684 moveto
+84 684 lineto
+84 648 lineto
+186 648 lineto
+closepath
+stroke
+gsave 10 dict begin
+0.000 0.000 0.000 nodecolor
+135 669 moveto 89 -0.5 (Unamed Pipe) alignedtext
+135 653 moveto 45 -0.5 (write\(\)) alignedtext
+end grestore
+end grestore
+
+%	sendNotice -> pipeWrite
+newpath 135 722 moveto
+135 713 135 703 135 693 curveto
+stroke
+newpath 133 694 moveto
+135 684 lineto
+138 694 lineto
+closepath
+fill
+
+%	eventLoop
+gsave 10 dict begin
+0.000 1.000 1.000 nodecolor
+newpath 189 558 moveto
+81 558 lineto
+81 522 lineto
+189 522 lineto
+closepath
+stroke
+gsave 10 dict begin
+0.000 0.000 0.000 nodecolor
+135 543 moveto 94 -0.5 (Qt Event Loop) alignedtext
+135 527 moveto 46 -0.5 (select\(\)) alignedtext
+end grestore
+end grestore
+
+%	pipeWrite -> eventLoop
+gsave 10 dict begin
+0.000 1.000 1.000 edgecolor
+newpath 135 648 moveto
+135 627 135 591 135 567 curveto
+stroke
+newpath 133 568 moveto
+135 558 lineto
+138 568 lineto
+closepath
+fill
+gsave 10 dict begin
+154 615 moveto 24 -0.5 (O.S.) alignedtext
+end grestore
+end grestore
+
+%	notifier
+gsave 10 dict begin
+0.000 1.000 1.000 nodecolor
+newpath 218 466 moveto
+52 466 lineto
+52 430 lineto
+218 430 lineto
+closepath
+stroke
+gsave 10 dict begin
+0.000 0.000 0.000 nodecolor
+135 451 moveto 112 -0.5 (QSocketNotifier) alignedtext
+135 435 moveto 153 -0.5 (SIGNAL activated\(int\)) alignedtext
+end grestore
+end grestore
+
+%	eventLoop -> notifier
+gsave 10 dict begin
+0.000 1.000 1.000 edgecolor
+newpath 135 522 moveto
+135 509 135 490 135 475 curveto
+stroke
+newpath 133 476 moveto
+135 466 lineto
+138 476 lineto
+closepath
+fill
+gsave 10 dict begin
+151 489 moveto 17 -0.5 (Qt) alignedtext
+end grestore
+end grestore
+
+%	gotReadNot
+gsave 10 dict begin
+135 348 117 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 351 moveto 153 -0.5 (QtGUIThreadNotifier) alignedtext
+135 335 moveto 206 -0.5 (SLOT gotReaderNotification\(\)) alignedtext
+end grestore
+end grestore
+
+%	notifier -> gotReadNot
+gsave 10 dict begin
+0.000 1.000 1.000 edgecolor
+newpath 135 430 moveto
+135 417 135 399 135 384 curveto
+stroke
+newpath 133 384 moveto
+135 374 lineto
+138 384 lineto
+closepath
+fill
+gsave 10 dict begin
+151 397 moveto 17 -0.5 (Qt) alignedtext
+end grestore
+end grestore
+
+%	gotNotice
+gsave 10 dict begin
+135 240 91 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 243 moveto 153 -0.5 (QtGUIThreadNotifier) alignedtext
+135 227 moveto 140 -0.5 (SIGNAL gotNotice\(\)) alignedtext
+end grestore
+end grestore
+
+%	gotReadNot -> gotNotice
+newpath 135 322 moveto
+135 308 135 291 135 276 curveto
+stroke
+newpath 133 276 moveto
+135 266 lineto
+138 276 lineto
+closepath
+fill
+gsave 10 dict begin
+157 289 moveto 30 -0.5 (emit) alignedtext
+end grestore
+
+%	gotGUIThNot
+gsave 10 dict begin
+135 132 119 25 ellipse_path
+stroke
+gsave 10 dict begin
+135 135 moveto 110 -0.5 (QtAsyncAlerter) alignedtext
+135 119 moveto 209 -0.5 (SLOT gotGUIThreadNotifier\(\)) alignedtext
+end grestore
+end grestore
+
+%	gotNotice -> gotGUIThNot
+gsave 10 dict begin
+0.000 1.000 1.000 edgecolor
+newpath 135 214 moveto
+135 200 135 183 135 168 curveto
+stroke
+newpath 133 168 moveto
+135 158 lineto
+138 168 lineto
+closepath
+fill
+gsave 10 dict begin
+151 181 moveto 17 -0.5 (Qt) alignedtext
+end grestore
+end grestore
+
+%	gotGUIThNot -> receiveAlert
+newpath 135 106 moveto
+135 97 135 87 135 78 curveto
+stroke
+newpath 133 78 moveto
+135 68 lineto
+138 78 lineto
+closepath
+fill
+endpage
+grestore
+%%PageTrailer
+%%EndPage: 1
+%%Trailer
+%%Pages: 1
+end
+restore
+%%EOF

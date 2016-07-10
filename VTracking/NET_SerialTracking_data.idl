@@ -1,0 +1,36 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_SerialTracking_data.idl
+ * \brief enum and exceptions from the simple CORBA interface 
+ * to single telescope controller
+ *
+ * Original Author: Stephen Fegan
+ * $Author: sfegan $
+ * $Date: 2006/04/06 18:49:28 $
+ * $Revision: 2.1 $
+ * $Tag$
+ *
+ **/
+
+#ifndef NET_SERIALTRACKING_DATA_IDL
+#define NET_SERIALTRACKING_DATA_IDL
+
+// The server can be started in "Readonly" mode, in which case it will
+// raise this exception when instructed to do something
+exception CommandsNotPermitted { };
+
+// This exception occurs if you command the system to move to a target
+// when it is already tracking. You must call "nStop" before any of the
+// slew/track commands
+exception NotStopped { };
+
+// This exception is thrown if you try to get the details of the
+// wrong target type using the nGetAzElTargetDetails and
+// nGetRADecTargetDetails functions. You can use nGetStatus first to
+// determine which type it is
+exception WrongTargetType { };
+
+enum TargetObjectType { TO_RADEC, TO_AZEL, TO_UNKNOWN, TO_NULL };
+
+#endif // NET_SERIALTRACKING_DATA_IDL

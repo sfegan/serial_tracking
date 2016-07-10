@@ -1,0 +1,20 @@
+digraph NotificationList {
+	fontname=Helvetica;
+	node [fontname=Helvetica, shape=ellipse, color=black];
+	edge [fontname=Helvetica];	
+
+	user         [label="User", shape=hexagon, color=blue, fontcolor=blue]
+
+	scheduleNote [label="NotificationList\nscheduleNotification()"];
+	sendAlert    [label="AsyncAlerter\nsendAlert()"];
+	receiveAlert [label="AsyncAlerter\nreceiveAlert()"];
+	processAll   [label="NotificationList\nprocessAllNotifications()"];
+	doNote       [label="Notification\ndoNotification()"];
+
+	user -> scheduleNote -> sendAlert;
+	sendAlert -> receiveAlert [label="somehow", fontcolor=darkgreen, color=darkgreen];
+	receiveAlert -> processAll -> doNote;
+
+	subgraph clusterThreadTask { style=dashed; label="Task thread"; user scheduleNote sendAlert };
+	subgraph clusterThreadmain { style=dashed; label="GUI\nthread"; receiveAlert processAll doNote };
+};

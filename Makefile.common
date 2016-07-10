@@ -1,0 +1,180 @@
+# -----------------------------------------------------------------------------
+#
+# Serial tracking common makefile definitions
+#
+# Original Author: Stephen Fegan
+# $Author: aune $
+# $Date: 2011/04/08 05:10:25 $
+# $Revision: 2.10 $
+# $Tag$
+#
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# COMPILER FLAGS
+# -----------------------------------------------------------------------------
+
+COMMONCFLAGS   = -I. -D__STDC_LIMIT_MACROS -D__STDC_CONSTANT_MACROS -DNOHDF5
+CXX            = g++
+ARCHCFLAGS     = -Wall -g -fpermissive 
+LD             = g++
+ARCHLDFLAGS    =
+ARCHSOFLAGS    = -shared
+
+CFLAGS         = $(COMMONCFLAGS) $(ARCHCFLAGS) \
+		 $(QTCFLAGS) $(QWTCFLAGS) $(MYSQLCFLAGS) $(ZTHREADCFLAGS)
+CXXFLAGS       = $(COMMONCFLAGS) $(ARCHCFLAGS) \
+		 $(QTCFLAGS) $(QWTCFLAGS) $(MYSQLCFLAGS) $(ZTHREADCFLAGS) \
+		 $(OMNICFLAGS)
+LDFLAGS        = $(COMMONLDFLAGS) $(ARCHLDFLAGS) \
+		 $(QTLDFLAGS) $(QWTLDFLAGS) $(MYSQLLDFLAGS) $(ZTHREADLDFLAGS) \
+		 $(OMNILDFLAGS)
+
+# -----------------------------------------------------------------------------
+# VDB FLAGS
+# -----------------------------------------------------------------------------
+
+ifdef VERITASBASE
+COMMONCFLAGS   += -I$(VERITASBASE)/include
+COMMONLDFLAGS   = -L$(VERITASBASE)/lib
+endif
+
+# -----------------------------------------------------------------------------
+# QT FLAGS
+# -----------------------------------------------------------------------------
+
+ifdef QTDIR
+QTBIN         := $(QTDIR)/bin/
+else
+QTBIN         :=
+endif
+
+ifdef QTNOMT
+QTLIB         := -lqt
+else
+QTLIB         := -lqt-mt
+endif
+
+QTCFLAGS      :=
+QTLDFLAGS     :=
+
+ifdef QTINCDIR
+QTCFLAGS      += -I$(QTINCDIR)
+else
+ifdef QTDIR
+QTCFLAGS      += -I$(QTDIR)/include
+endif
+endif
+
+ifdef QTDIR
+QTLDFLAGS     += -L$(QTDIR)/lib
+endif
+
+QTLDFLAGS     += $(QTLIB)
+
+MOC            = $(QTBIN)moc
+UIC            = $(QTBIN)uic
+
+# -----------------------------------------------------------------------------
+# QWT FLAGS
+# -----------------------------------------------------------------------------
+
+QWTCFLAGS     :=
+QWTLDFLAGS    :=
+
+ifndef NOQWT
+
+ifndef QWTDIR
+QWTDIR := /usr/local
+endif
+
+ifndef QWTLIBNAME
+QWTLIBNAME    := qwt
+endif
+
+ifdef QWTINCDIR
+QWTCFLAGS     += -I$(QWTINCDIR)
+else
+QWTCFLAGS     += -I$(QWTDIR)/include/qwt
+endif
+
+ifdef QWTLIBDIR
+QWTLDFLAGS    += -L$(QWTLIBDIR)
+else
+QWTLDFLAGS    += -L$(QWTDIR)/lib
+endif
+
+QWTLDFLAGS    += -l$(QWTLIBNAME)
+else
+QWTCFLAGS     += -DGUI_NO_QWT
+endif
+
+# -----------------------------------------------------------------------------
+# MYSQL FLAGS
+# -----------------------------------------------------------------------------
+
+ifdef MYSQLDIR
+MYSQLCFLAGS   := $(shell $(MYSQLDIR)/mysql_config --cflags)
+MYSQLLDFLAGS  := $(shell $(MYSQLDIR)/mysql_config --libs)
+else
+MYSQLCFLAGS   := $(shell mysql_config --cflags)
+MYSQLLDFLAGS  := $(shell mysql_config --libs)
+endif
+
+# -----------------------------------------------------------------------------
+# ZTHREADS
+# -----------------------------------------------------------------------------
+
+ifdef ZTHREADDIR
+ZTHREADCFLAGS  := -I$(ZTHREADDIR)/include
+ZTHREADLDFLAGS := -L$(ZTHREADDIR)/lib -lZThread -lpthread
+else
+ZTHREADLDFLAGS := -lZThread -lpthread
+endif
+
+# -----------------------------------------------------------------------------
+# IDL
+# -----------------------------------------------------------------------------
+
+ifndef OMNIORBDIR
+OMNIORBDIR := /usr/local
+endif
+
+ifdef OMNIEVENTDIR
+OMNILDFLAGS     += -L$(OMNIEVENTDIR)/lib -lomniEvents
+else
+OMNILDFLAGS     += -lomniEvents
+endif
+
+ifndef OMNIORBINCDIR
+OMNIORBINCDIR := $(OMNIORBDIR)/include/omniORB4
+endif
+
+ifndef OMNIORBLIBDIR
+OMNIORBLIBDIR := $(OMNIORBDIR)/lib
+endif
+
+ifndef OMNIORBBINDIR
+OMNIORBBINDIR := $(OMNIORBDIR)/bin
+endif
+
+IDL            := $(OMNIORBBINDIR)/omniidl
+IDLFLAGS       := -bcxx -Wbh=.h -Wbs=.cpp -Wbd=_dyn.cpp -Wba
+OMNICFLAGS     := -I$(OMNIORBINCDIR)
+OMNILDFLAGS    := -L$(OMNIORBLIBDIR) -lomniDynamic4 -lomniORB4 -lomniEvents
+
+ifdef OMNIEVENTINCDIR
+OMNICFLAGS     += -I$(OMNIEVENTINCDIR)
+else
+OMNICFLAGS     += -I$(OMNIORBINCDIR)/COS
+endif
+
+# -----------------------------------------------------------------------------
+# TEST
+# -----------------------------------------------------------------------------
+
+all:
+
+sjftest:
+	echo $(CFLAGS)
+	echo $(LDFLAGS)

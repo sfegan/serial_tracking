@@ -1,0 +1,325 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GUITargetAddDialogUI</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>GUITargetAddDialogUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>467</width>
+            <height>285</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Add target to database</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout10</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>labSource</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Object name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>leSource</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>leSource</cstring>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Source name. Try to use a fully formed astronomical identifier understandable by SIMBAD.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout11</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonSearch</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Validate object and search SIMBAD</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+V</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="Line">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout5</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>labDec</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Declination:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>leDec</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="2">
+                    <property name="name">
+                        <cstring>leDesc</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Description of source. Please include its source class and the official SIMBAD name</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>labDesc</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Description:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>leDesc</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="4" column="1" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>cbColl</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Select the collection into which the source will be entered.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>labEpoch</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Epoch:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>leEpoch</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>labColl</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Collection:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>cbColl</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="2">
+                    <property name="name">
+                        <cstring>leDec</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>+/-DD:MM:SS.S</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="2">
+                    <property name="name">
+                        <cstring>leEpoch</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>YYYY.YY</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>labRA</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Right ascension:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>leRA</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="0" column="2">
+                    <property name="name">
+                        <cstring>leRA</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>HH:MM:SS.S</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>200</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonReset</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Reset</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+R</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="default">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Reset the fields in the window.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonAdd</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Add</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="default">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Add the source to the database.</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonFinished</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Finished</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+F</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="default">
+                        <bool>false</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Finish adding sources and close window.</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>buttonFinished</sender>
+        <signal>clicked()</signal>
+        <receiver>GUITargetAddDialogUI</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>leSource</tabstop>
+    <tabstop>buttonSearch</tabstop>
+    <tabstop>leRA</tabstop>
+    <tabstop>leDec</tabstop>
+    <tabstop>leEpoch</tabstop>
+    <tabstop>leDesc</tabstop>
+    <tabstop>cbColl</tabstop>
+    <tabstop>buttonReset</tabstop>
+    <tabstop>buttonAdd</tabstop>
+    <tabstop>buttonFinished</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

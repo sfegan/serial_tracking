@@ -1,0 +1,374 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_TCInterface.idl
+ * \ingroup VTracking
+ * \brief CORBA interface to the telescope controller
+ *
+ * This defines the remote CORBA interface to the (single) telescope
+ * controller.
+ *
+ * Original Author: Stephen Fegan
+ * $Author: aune $
+ * $Date: 2011/10/06 02:14:28 $
+ * $Revision: 2.6 $
+ * $Tag$
+ *
+ **/
+
+#ifndef VTRACKING_NET_TCINTERFACE_IDL
+#define VTRACKING_NET_TCINTERFACE_IDL
+
+module VTracking
+{ 
+
+  struct NET_PrimaryLimits
+  {
+    double lim_el_up;
+    double lim_el_dn;
+    double lim_az_cw;
+    double lim_az_cc;
+    double max_az_speed;
+    double max_el_speed;
+  };
+
+  struct NET_RestrictedLowElevationMotionLimits
+  {
+    double low_el;
+    double max_az_slew;
+    double el_hysteresis;
+    double max_az_speed;
+    double max_el_speed;
+  };
+  
+  struct NET_NotchedInclusionLimitsNotch
+  {
+    double cc_limit;
+    double cw_limit;
+    double dn_limit;
+  };
+  
+  struct NET_NotchedInclusionLimits
+  {
+    sequence<NET_NotchedInclusionLimitsNotch> notches;
+    double dn_lim;
+    double el_hysteresis;
+    double max_az_speed;
+    double max_el_speed;
+  };
+  
+  struct NET_KeyLimits
+  {
+    double key_az_cw;
+    double key_az_cc;
+    double key_el_dn;
+    double lim_el_up;
+    double lim_el_dn;
+    double lim_az_cw;
+    double lim_az_cc;
+    double max_az_speed;
+    double max_el_speed;
+  };
+
+  enum NET_MotionLimitsType 
+  { NET_ML_NONE, 
+    NET_ML_PRIMARY, 
+    NET_ML_RESTICTED_LOW_EL_MOTION,
+    NET_ML_NOTCHED_INCLUSION,
+    NET_ML_KEY,
+    NET_ML_LIST };
+
+  union NET_MotionLimits;
+  typedef sequence<NET_MotionLimits> NET_MotionLimitsSeq;
+
+  union NET_MotionLimits switch(NET_MotionLimitsType)
+  {
+  case NET_ML_NONE:
+    boolean none;
+  case NET_ML_PRIMARY:
+    NET_PrimaryLimits primary;
+  case NET_ML_RESTICTED_LOW_EL_MOTION:
+    NET_RestrictedLowElevationMotionLimits low_el;
+  case NET_ML_NOTCHED_INCLUSION:
+    NET_NotchedInclusionLimits notched_inclusion;
+  case NET_ML_KEY:
+    NET_KeyLimits key;
+  case NET_ML_LIST:
+    struct NET_MLList
+    {
+      NET_MotionLimitsSeq seq;
+      double max_az_speed;
+      double max_el_speed;
+    } list;
+  };
+
+  struct NET_CorrectionParameters
+  {
+    boolean enable_offsets;
+    boolean enable_corrections;
+    boolean enable_vff;
+    double az_ratio;
+    double el_ratio;
+    double az_offset;
+    double el_offset;
+    double az_ns;
+    double az_ew;
+    double el_udew;
+    double fp_az;
+    double flex_el_A;
+    double flex_el_B;
+    double el_pos_vff_s;
+    double el_pos_vff_t;
+    double el_neg_vff_s;
+    double el_neg_vff_t;
+    double az_pos_vff_s;
+    double az_pos_vff_t;
+    double az_neg_vff_s;
+    double az_neg_vff_t;
+  };
+
+  struct NET_TCMiscData
+  {
+    double earth_pos_lon_rad;
+    double earth_pos_lat_rad;
+    NET_MotionLimits limits;
+    NET_CorrectionParameters corrections;
+  };
+
+  enum NET_CoordinateOffsetType { NET_CO_NULL, NET_CO_ONOFF, NET_CO_WOBBLE,
+				  NET_CO_ORBIT, NET_CO_ELAZOFF };
+
+  struct NET_CoordinateOffsetOnOff
+  {
+    double offset_time_rad;
+  };
+
+  struct NET_CoordinateOffsetWobble
+  {
+    double wobble_coords_theta_rad;
+    double wobble_coords_phi_rad;
+  };
+
+  struct NET_CoordinateOffsetOrbit
+  {
+    double orbit_coords_theta_rad;
+    double orbit_coords_phi_rad;
+    double orbit_period_day;
+  };
+
+  struct NET_CoordinateOffsetElAz
+  {
+    double elaz_coords_theta_rad;
+    double elaz_coords_phi_rad;
+  };
+
+
+  union NET_CoordinateOffset switch(NET_CoordinateOffsetType)
+  {
+  case NET_CO_NULL:
+    boolean null;
+  case NET_CO_ONOFF:
+    NET_CoordinateOffsetOnOff onoff;
+  case NET_CO_WOBBLE:
+    NET_CoordinateOffsetWobble wobble;
+  case NET_CO_ORBIT:
+    NET_CoordinateOffsetOrbit orbit;
+  case NET_CO_ELAZOFF:
+    NET_CoordinateOffsetElAz elaz;
+  };
+
+  enum NET_TargetObjectType { NET_TO_RADEC, NET_TO_AZEL, NET_TO_STOW, 
+			      NET_TO_CV, NET_TO_UNKNOWN, NET_TO_NULL };
+
+  struct NET_TargetObjectRADec
+  {
+    double ra_rad;
+    double dec_rad;
+    double epoch;
+    NET_CoordinateOffset offset;
+    string name;
+  };
+
+  struct NET_TargetObjectStow
+  {
+    double az_rad;
+    double el_rad;
+    boolean use_corrections;
+    boolean stop_at_target;
+    string name;
+  };
+
+  struct NET_TargetObjectAzEl
+  {
+    double az_rad;
+    double el_rad;
+    boolean use_corrections;
+    boolean stop_at_target;
+  };
+
+  struct NET_TargetObjectCV
+  {
+    double az_rad;
+    double el_rad;
+    double az_speed;
+    double el_speed;
+    double mjd_zero;
+  };
+
+  union NET_TargetObject switch(NET_TargetObjectType)
+  {
+  case NET_TO_RADEC:
+    NET_TargetObjectRADec radec;
+  case NET_TO_AZEL:
+  case NET_TO_UNKNOWN:
+    NET_TargetObjectAzEl azel;
+  case NET_TO_STOW:
+    NET_TargetObjectStow stow;
+  case NET_TO_CV:
+    NET_TargetObjectCV cv;
+  case NET_TO_NULL:
+    boolean null;
+  };
+
+  enum NET_DirectionPreference { NET_DP_NONE, NET_DP_CW, NET_DP_CCW };
+
+  enum NET_DriveMode { NET_DM_STANDBY, NET_DM_SLEW, NET_DM_POINT,
+		       NET_DM_SPIN, NET_DM_SECTOR_SCAN, NET_DM_RASTER,
+		       NET_DM_CHANGING, NET_DM_UNKNOWN };
+
+  struct NET_DriveStatus
+  {
+    double driveangle_deg;
+    
+    NET_DriveMode driveMode;
+    boolean servo1Fail;
+    boolean servo2Fail;
+    boolean servoOn;
+    
+    boolean brakeReleased;
+    
+    boolean limitCwUp;
+    boolean limitCcwDown;
+    
+    boolean positionFault;
+    boolean positionComplete;
+  };
+
+  struct NET_PositionerStatus
+  {
+    NET_DriveStatus az;
+    NET_DriveStatus el;
+    
+    boolean azTravelledCCW;
+    double azCableWrap;
+    
+    boolean interlock;
+    boolean interlockAzPullCord;
+    boolean interlockAzStowPin;
+    boolean interlockElStowPin;
+    boolean interlockAzDoorOpen;
+    boolean interlockElDoorOpen;
+    boolean interlockSafeSwitch;
+    
+    boolean remoteControl;
+    boolean checksumOK;
+
+    boolean msgBadFrame;
+    boolean msgCommandInvalid;
+    boolean msgInputOverrun;
+    boolean msgOutputOverrun;
+    
+    boolean relay1;
+    boolean relay2;
+    
+    double Analog1;
+    double Analog2;
+  };
+
+  enum NET_TrackingState { NET_TS_STOP, NET_TS_SLEW, NET_TS_TRACK, 
+			   NET_TS_RESTRICTED_MOTION, NET_TS_RAMP_DOWN,
+			   NET_TS_COM_FAILURE };
+
+  enum NET_TrackingRequest { NET_REQ_STOP, NET_REQ_SLEW, NET_REQ_TRACK };
+
+  struct NET_StateElements
+  {
+    NET_TargetObject target;
+    NET_DirectionPreference direction_preference;
+    NET_PositionerStatus status;
+    double last_az_driveangle_deg;
+    double last_el_driveangle_deg;
+    double az_driveangle_estimated_speed_dps;
+    double el_driveangle_estimated_speed_dps;
+    NET_TrackingState state;
+    NET_TrackingRequest req;
+    long tv_tv_sec;
+    long tv_tv_usec;
+    double mjd;
+    double last_mjd;
+    double timeangle_rad;
+    double lmst_rad;
+    boolean last_has_object;
+    boolean has_object;
+    double tel_azel_az_rad;
+    double tel_azel_el_rad;
+    double obj_azel_az_rad;
+    double obj_azel_el_rad;
+    double anticipation;
+    double last_cmd_az_driveangle_deg;
+    double last_cmd_el_driveangle_deg;
+    double cmd_az_driveangle_deg;
+    double cmd_el_driveangle_deg;
+    double az_slew_speed_dps;
+    double el_slew_speed_dps;
+  };
+
+  exception TCIReadonly { };
+
+  interface NET_TCInterface
+  {
+    // Get status
+    NET_TCMiscData netGetMiscData();
+    NET_StateElements netGetTelescopeState();
+
+    // Set targets
+    void netSetTargetObjectNull() raises ( TCIReadonly );
+    void netSetTargetObjectStow(in string name) raises ( TCIReadonly );
+    void netSetTargetObjectZenith() raises ( TCIReadonly );
+    void netSetTargetObjectRaDec(in double ra_rad, in double dec_rad, 
+				 in double epoch, 
+				 in NET_CoordinateOffset offset,
+				 in string name,
+				 in NET_DirectionPreference dir_pref)
+      raises ( TCIReadonly );
+    void netSetTargetObjectAzEl(in double az_rad, in double el_rad,
+				in boolean use_corrections,
+				in boolean stop_at_target,
+				in NET_DirectionPreference dir_pref)
+      raises ( TCIReadonly );
+    void netSetTargetObjectCV(in double az_rad, in double el_rad,
+			      in double az_speed, in double el_speed,
+			      in double mjd_zero)
+      raises ( TCIReadonly );
+
+    // Set correction paremeters (for completeness)
+    void netSetCorrectionParameters(in NET_CorrectionParameters cp)
+      raises ( TCIReadonly );
+
+    // Command motion
+    void netReqStop() raises ( TCIReadonly );
+    void netReqSlew() raises ( TCIReadonly );
+    void netReqTrack() raises ( TCIReadonly );
+    void netEmergencyStop();
+
+    // Program execution
+    void netTerminate() raises ( TCIReadonly );
+
+    // Name of subsystem program and object name
+    const string program_name = "serial_tracking";
+    const string object_name = "TelescopeController";
+  };
+
+};
+
+#endif // VTRACKING_NET_TCINTERFACE_IDL

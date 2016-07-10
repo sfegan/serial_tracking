@@ -1,0 +1,567 @@
+*******************************************************************************
+*                                   HISTORY                                   *
+*******************************************************************************
+
+* Earliest known version                                       [SJF 2003-11-25]
+
+* Add ScopeAPI abstraction layer                               [SJF 2003-12-11]
+
+* Move PANIC button to bottom bar and highlight                [SJF 2003-12-11]
+
+* Fix Galactic Lat/Long                                        [SJF 2003-12-11]
+
+* Fix spacing in Control box                                   [SJF 2003-12-11]
+
+* Add back interlock status                                    [SJF 2003-12-11]
+
+* Add "Polaris" to Aux menu                                    [SJF 2003-12-11]
+
+* Change size of Go / Stop buttons                             [SJF 2003-12-13]
+
+* Change control radioboxes to include Az/Ra/Src/Aux labels    [SJF 2003-12-13]
+
+* Add animated telescope status widget                         [SJF 2003-12-14]
+
+* Add threaded control loop                                    [SJF 2003-12-14]
+
+* Fix negative azimuth driveangle                              [SJF 2003-12-17]
+
+* Add recorded position table                                  [SJF 2003-12-17]
+
+* Fix Az/El gear ratio calculation using current driveangle    [SJF 2003-12-20]
+
+* Add delayed pixmap generation factory to speed start-up      [SJF 2003-12-24]
+
+* Add corrections minimization                                 [SJF 2003-12-24]
+
+* Fix slew/track disables minimize function                    [SJF 2003-12-28]
+
+* Fix corrections not being inverted properly                  [SJF 2003-12-31]
+
+* Add new correction parameters and delete "Step"              [SJF 2004-12-31]
+
+* Happy New Year                                               [SJF 2004-01-01]
+
+* Fix jitter in time when update does not do getTimes itself   [SJF 2004-01-01]
+
+* Fix GOTO_KEY_THRESHOLD when target outside allowable range   [SJF 2004-01-01]
+
+* Fix lat/long from GPS -- N31:40:29.04  W110:57:10.08         [SJF 2004-01-02]
+
+* Change tooltips on Target/Telescope RA/Dec to mention
+  CURRENT epoch                                                [SJF 2004-01-02]
+
+* Add nutation and aberration                                  [SJF 2004-01-04]
+
+* Add culmination warning                                      [SJF 2004-01-04]
+
+* Add PID LOOP Emulator                                        [SJF 2004-01-06]
+
+* Fix slewing stops on overshoot -- keep in slew mode until
+  destination is closeEnough for a non-zero amount of time     [SJF 2004-01-06]
+
+* Improve KEY calculation to allow scope skip 15.5 degree      [SJF 2004-01-11]
+
+* Fix corrections.... FP/ELAZ corrections should be reversed
+  in doCorrections and undoCorrections                         [SJF 2004-01-14]
+
+* Fix return from doCorrections indicating the position is
+  impossible to attain                                         [SJF 2004-01-14]
+
+* Add the PIU control protocol                                 [SJF 2004-01-19]
+
+* Fix GO button double (triple...) click to start tracking     [SJF 2004-02-15]
+
+* Add function back-trace support to exceptions                [SJF 2004-02-18]
+
+* Handle strange mount behavior when two programs address
+  it at the same time -- the max speeds get reset to zero!     [SJF 2004-03-30]
+
+* Reimplement Target Table with sorting and filtering          [SJF 2004-04-03]
+
+* Add selection of target object make box go to ON             [SJF 2004-04-03]
+
+* Add about box                                                [SJF 2004-04-03]
+
+* Add smoother animation in QLabel                             [SJF 2004-04-06]
+
+* Add workaround for non-functional Az pull-cord status        [SJF 2004-04-07]
+
+* Fix attempt to recover from az,el speed set to zero          [SJF 2004-04-07]
+
+* Add uncluttered window tab - major change to GUI code!       [SJF 2004-04-11]
+
+* Change tracking error displays to use driveangles --
+  i.e. not to go through undoCorrections                       [SJF 2004-04-11]
+
+* Add slew time indicator                                      [SJF 2004-04-11]
+
+* Add small delay to PIUScopeAPI for commands without ACK/NAK
+  fix for command input over-run and speed reset to zero       [SJF 2004-04-12]
+
+* Add remaining status elements to detail page - user inputs,
+  cable wrap, checksum, and communication errors               [SJF 2004-04-17]
+
+* Check that setting PID params / Offsets works properly       [SJF 2004-04-26]
+
+* Finished EIA422 protocol (set drive parameter commands)      [SJF 2004-04-26]
+
+* Added workaround for behavior of controller max speeds       [SJF 2004-04-26]
+
+* Added FAILSAFE user interface which can be involved using
+  serial_tracking failsafe [-eia or -piu] [communicator]       [SJF 2004-04-26]
+
+* Added TelecopeController and GUI to FailsafeUI to give
+  fully functional (but awkward) text based controller         [SJF 2004-04-27]
+
+* Add better frequency control in TelescopeController loop     [SJF 2004-04-29]
+
+* Delay calculation of RMS error in measurement table on load  [SJF 2004-04-29]
+
+* Seperate Az/El PID/Offset commands in ScopeAPI               [SJF 2004-05-02]
+
+* Add better notification system and Qt dialog notification.
+  VMessaging layer allows Messages be passed transparently
+  from perspective of sender                                   [SJF 2004-05-19]
+
+* Add support for CCW indicator bit in UDP protocol            [SJF 2004-08-27]
+
+* Added support of BRU protocol                                [SJF 2004-09-15]
+
+* Output target location in logging of TelescopeController     [SJF 2004-09-16]
+
+* Support Revision-B of EIA protocol                           [SJF 2004-09-17]
+
+* Added oscilloscope window if QWT is available                [SJF 2004-09-24]
+
+* Cleaned up GUI code, added panes and GUIUpdateData           [SJF 2004-09-26]
+
+* Better choice of pane to which to return after target table  [SJF 2004-09-26]
+
+* Added access control to manage panes. Allows restriction
+  of GUI to simple control of telescope                        [SJF 2004-09-26]
+
+* Add mean/rms values to oscilloscope                          [SJF 2004-09-26]
+
+* Make RA/Dec target OnOff/OffOn etc button work               [SJF 2004-09-26]
+
+* VERSION 0.9.7                                                [SJF 2004-09-26]
+
+* Menu bar for things that do not fit elsewhere                [SJF 2004-09-27]
+
+* Added AZ and EL error to oscilloscope                        [SJF 2004-10-04]
+
+* Added PIU protocol support for hand paddle indication        [SJF 2004-10-05]
+
+* Happy New Year                                               [SJF 2005-01-01]
+
+* Automatically set tracking mode to ON when source is changed [SJF 2005-03-15]
+
+* Add logging layer with file and database options. VER 1.0.0  [SJF 2005-09-21]
+
+* New Makefiles and headers for all cpp/h files                [SJF 2005-09-30]
+
+* DB fixes. Logging of requested targets. VERSION 1.0.2        [SJF 2005-10-01]
+
+* Log DB exceptions through messaging system                   [SJF 2005-10-01]
+
+* Add more RA offset for off observations. VERSION 1.0.3       [SJF 2005-10-01]
+
+* Fixes to get DH's Whipple code to compile                    [SJF 2005-10-31]
+
+* Added message log pane and hold/resume to message relay      [SJF 2005-11-04]
+
+* Recoded main() to handle multiple telescopes                 [SJF 2005-11-21]
+
+* Added VSOptions to configure system and "-help" option       [SJF 2005-11-21]
+
+* TelescopeMotionLimits implements position and speed limits   [SJF 2005-11-21]
+
+* Limits/Max Speeds/Datastream/DB all now keyed on scope id    [SJF 2005-11-22]
+
+* VERSION 1.0.4                                                [SJF 2005-11-22]
+
+* Updated "Panic!" code to kill control loop in cleaner way    [SJF 2005-11-23]
+
+* RAMP DOWN uses Point command and has 10 sec maximum duration [SJF 2005-11-23]
+
+* VERSION 1.0.5                                                [SJF 2005-11-23]
+
+* New "-daytime" option to restrict motion to El<45 -45<Az<45  [SJF 2005-11-23]
+
+* New "-override_security" to do away with tedious security    [SJF 2005-11-23]
+
+* Added step function targets to Motion menu for convenience   [SJF 2005-11-23]
+
+* Trapezoidal set-point scheduler for emulator                 [SJF 2005-11-24]
+
+* Physics model to solve coupled differential equations in
+  v,x,i on both axes for emulator                              [SJF 2005-11-26]
+
+* Split simple text menu from FailsafeUI                       [SJF 2005-11-27]
+
+* Fix ADC conversion (24 bit -- max 4096)                      [SJF 2005-11-30]
+
+* Add "-override_key" option to disable key limits             [SJF 2005-11-30]
+
+* Improve plot handling on oscilloscope. VERSION 1.0.7         [SJF 2005-12-01]
+
+* Add "-dn_limit" option to define downward limit              [SJF 2005-12-02]
+
+* Happy New Year                                               [SJF 2006-01-01]
+
+* Update T1 protocol to reflect new servo system               [SJF 2006-02-28]
+
+* Change BackTrace to use const char* as per OAWG              [SJF 2006-02-28]
+
+* Remove set-max-speed if higher than programmed values        [SJF 2006-02-28]
+
+* Make TelescopeController to base class and added new
+  TelescopeControllerLocal which has functionality to do
+  actual control of telescopes                                 [SJF 2006-02-28]
+
+* Add NET_TCInterface and NET_TCInterfaceServant which maps
+  TelscopeController interface onto CORBA                      [SJF 2006-02-28]
+
+* Add TelescopeControllerRemote as proxy for a real controller
+  over CORBA                                                   [SJF 2006-02-28]
+
+* Fixed E.T.A. calculation in GUI                              [SJF 2006-03-01]
+
+* MAJOR CHANGES: CORBA TelescopeController working correctly   [SJF 2006-03-03]
+
+* VERSION 1.1.0pre1                                            [SJF 2006-03-03]
+
+* Fixed problem with rounding of DB timestamp, should solve
+  the duplicate entry problem                                  [SJF 2006-03-04]
+
+* Added read-only option to server. Added message when command
+  is given in read-only mode                                   [SJF 2006-03-06]
+
+* Added colors to distinguish different telescopes             [SJF 2006-03-06]
+
+* Added message for unsupported target type in CORBA interface [SJF 2006-03-06]
+
+* Added telescope name / controller information to caption     [SJF 2006-03-06]
+
+* New PhaseLockedLoop class does loop functionality previously
+  in TelescopeController (so that it can be re-used)           [SJF 2006-03-08]
+
+* Add CORBA distributed messaging                              [SJF 2006-03-08]
+
+* Numerous small changes to satisfy valgrind                   [SJF 2006-03-08]
+
+* VERSION 1.1.0pre3                                            [SJF 2006-03-09]
+
+* Support for offset (wobble) mode in RA/Dec Target            [SJF 2006-03-11]
+
+* TargetObject can now produce stringified "name"              [SJF 2006-03-11]
+
+* New box in the GUI to display target name                    [SJF 2006-03-11]
+
+* Wobble mode selection in RA/Dec and Target object selectors  [SJF 2006-03-12]
+
+* Add smoother animation in QPushbutton (GO button) - should
+  have done this ages ago - using class MyQPushButton          [SJF 2006-03-12]
+
+* VERSION 1.1.0pre4                                            [SJF 2006-03-12]
+
+* Fixed order of object deletion on shutdown - thanks VALGRIND [SJF 2006-03-24]
+
+* Fixed (hopefully) problem of PID parameters not being read
+  TelescopeControllerLocal - now has 3 COMMUNICATION phases
+  1) Reset from COM_FAILURE
+  2) Read telescope status - reqStat
+  3) Send motion command                                       [SJF 2006-03-28]
+
+* Add space in record output before az target position         [SJF 2006-03-28]
+
+* Unregister the CORBA messenger before deleting it :-)        [SJF 2006-03-29]
+
+* Added RestrictedLowElevationMotion class to disallow large
+  azimuth slews below a minimum safe elevation                 [SJF 2006-03-30]
+
+* Added button to enable/disable corrections and stop on
+  target for Az/El mode. Long time coming!                     [SJF 2006-03-30]
+
+* Continued reform of limits system                            [SJF 2006-03-30]
+
+* Scope number is in default correction filename (date also
+  part of filename in save)                                    [SJF 2006-03-30]
+
+* New script to run code on both T1 and T2                     [SJF 2006-03-30]
+
+* Remove "-override_key" and "-dn_limit" options               [SJF 2006-03-30]
+
+* VERSION 1.1.0pre6 (what happened to 1.1.0pre5 ?)             [SJF 2006-03-30]
+
+* Added general fixed positions (stow/platform etc..)          [SJF 2006-04-03]
+
+* Added limits with multiple notches                           [SJF 2006-04-03]
+
+* Added vertical only motion at low elevation                  [SJF 2006-04-03]
+
+* Added handling of new limits classes to CORBA                [SJF 2006-04-04]
+
+* VERSION 1.1.0                                                [SJF 2006-04-04]
+
+* Option to set period of telescope controller loop (in msec)
+  and of DB logging (in controller iterations). Also can now
+  set size of cache                                            [SJF 2006-04-04]
+
+* Velocity feed-forward in controller and tracking correction
+  parameters. Removed accumulation of anticipation             [SJF 2006-04-04]
+
+* Added filter of mouse events from enabled InfoLineEdits,
+  eliminating mouse and pop-up menu interactions. Finally!     [SJF 2006-04-04]
+
+* VERSION 1.1.1                                                [SJF 2006-04-05]
+
+* Discard last commanded position when new target set, so that
+  Vff calculation does not get bogus speed                     [SJF 2006-04-05]
+
+* Added daemon mode - removed all cout, cerr in the main body
+  of the code and added VMessenger::Debug which is a global
+  access point to a stream. In daemon mode all output is
+  redirected to log file in /tmp (or elsewhere if requested)   [SJF 2006-04-08]
+
+* Added local DataStream locking (essential for daemon mode!)  [SJF 2006-04-08]
+
+* Added remote CORBA terminate command line option             [SJF 2006-04-08]
+
+* VERSION 1.1.2                                                [SJF 2006-04-09]
+
+* Rename GOTO_KEY_THRESHOLD to RESTRICTED_MOTION               [SJF 2006-04-10]
+
+* VFF model now has a separate linear relationship for
+  negative and positive motion on each axis (8 parameters)     [SJF 2006-04-18]
+
+* TCP pane now has LineEdits for most parameters and triple
+  button widgets for EL offset and FP coll only                [SJF 2006-04-18]
+
+* NET_TCInterface supports VFF parameters                      [SJF 2006-04-18]
+
+* VERSION 1.1.3                                                [SJF 2006-04-18]
+
+* CP solver copies VFF parameters currently in use into new
+  parameters set while saving                                  [SJF 2006-04-19]
+
+* Stream messenger does not print backtrace for ROUTINE
+  messages so people will not freak out :-)                    [SJF 2006-04-19]
+
+* VERSION 1.1.4                                                [SJF 2006-04-19]
+
+* SUN object. NEVER TRACK THIS OBJECT                          [SJF 2006-04-22]
+
+* SUN monitor showing elevation and angle to optic axis when
+  Sun is > -12deg. The monitor flashes like crazy when Sun
+  is above horizon and within 60 degrees of the axis. Fun!     [SJF 2006-04-22]
+
+* MOON object. NEVER TRACK THIS OBJECT WITH HV ON              [SJF 2006-04-22]
+
+* Moved most astronomical routines to SEphem::Astro            [SJF 2006-04-23]
+
+* SUN monitor also warns of the moon being above the horizon   [SJF 2006-04-23]
+
+* New rigorous nutation code from Meeus - not used yet         [SJF 2006-04-23]
+
+* VERSION 1.1.4 -- tag only applied in CVS today.. sorry       [SJF 2006-04-24]
+
+* All command line option and tool tip help text transferred
+  to "text.h" for ease of spell checking.                      [SJF 2006-04-26]
+
+* Removed delays in PIUScopeAPI, which were added to cope with
+  UDP to serial interface in prototype system. This *must* be
+  tested on the instrument when I am out there                 [SJF 2006-04-26]
+
+* Added realtime scheduling to TelescopeControlLocal. Should
+  probably be moved to PLL code in some smart way              [SJF 2006-04-26]
+
+* Add new "reset latched bits" to PIU command set and
+  resetCommunications - cmd_clear_bits                         [SJF 2006-07-14]
+
+* New T3 entries                                               [JP  2006-10-09]
+
+* Fix to code to implement ultimate limits. VERSION 1.1.5      [SJF 2006-11-06]
+
+* Many changes for much anticipated coming of the array GUI    [SJF 2007-01-13]
+
+* Added "no_auto_stopping" flag to minimize effects of CORBA
+  timeouts. Remote controller does not try to stop telescope
+  on reception of COM_FAILURE or on startup/exit.              [SJF 2007-01-14]
+
+* VERSION 1.2.1                                                [SJF 2007-01-14]
+
+* When corrections disabled have telescope position show
+  encoder values also                                          [SJF 2007-01-19]
+
+* Simple CORBA interface for telctl etc.                       [SJF 2007-01-20]
+
+* VERSION 1.2.3                                                [SJF 2007-01-20]
+
+* Monitor to check the time on the individual PCS computers    [SJF 2007-01-22]
+
+* CORBA menu with "terminate server" option - on array UI      [SJF 2007-01-22]
+
+* Add timeout to logging when the telescope is stopped and
+  a command has not received in specified time                 [SJF 2007-01-24]
+
+* Blur small verniers when they would have to move 1/4 turn    [SJF 2007-01-24]
+
+* Targets in list box sorted by name for MDW                   [SJF 2007-01-24]
+
+* GRB target monitor                                           [SJF 2007-01-25]
+
+* GRB target table                                             [SJF 2007-01-26]
+
+* Temporary GRB alert message. VERSION 1.2.4                   [SJF 2007-01-27]
+
+* GRB alert wizard. VERSION 1.3.0                              [SJF 2007-01-28]
+
+* Fix problem with GRB notification running after GRB monitor
+  has been deleted leading to error on exit. VERSION 1.3.1     [SJF 2007-02-02]
+
+* Fix for object selector segfault when GRB not activated      [SJF 2007-02-03]
+
+* Add phase control to PLL - spread phases of TCRemote         [SJF 2007-02-03]
+
+* Added "solicit target" button to telescope status widget     [SJF 2007-02-03]
+
+* Modified behaviour of GRB monitor to handle retracted GRBs   [SJF 2007-02-12]
+
+* Transfer focus between GO and STOP when clicked              [SJF 2007-02-16]
+
+* New position for T4 stow - post alignment                    [JP  2007-02-27]
+
+* Added writing of target name and tracking mode to DB         [SJF 2007-04-01]
+
+* Added reading of targets from database table. VERSION 1.3.5  [SJF 2007-04-03]
+
+* Added loading of targets from DB or file                     [SJF 2007-04-04]
+
+* Added "add target" dialog                                    [SJF 2007-04-04]
+
+* Query the resolver for objects being added                   [SJF 2007-04-05]
+
+* Added moon distance column to target table                   [SJF 2007-06-15]
+
+* Added logging of stop command and automatic stops            [SJF 2007-06-20]
+
+* Added dialog to manage collections and targets               [SJF 2007-07-04]
+
+* Tested and repaired elements of simple interface             [SJF 2007-07-18]
+
+* Load/Save corrections to file OR database [default]          [SJF 2007-07-18]
+
+* Added comment field to corrections in DB                     [SJF 2007-07-19]
+
+* New stow position for T1. VERSION 1.4.0                      [SJF 2007-08-13]
+
+* Fixed bug in insertion of targets with negative declination  [SJF 2007-08-27]
+
+* Added load targets button to empty targets table             [SJF 2007-08-27]
+
+* Get list of protected collections from database. VER 1.4.1   [SJF 2007-09-17]
+
+* Add target only checks "all" collection for duplicates       [SJF 2007-09-19]
+
+* Changed wobble offsets available through menu to be from
+  0deg to 2deg in steps of 0.05deg                             [SJF 2007-10-11]
+
+* Try up to four times to submit the target commands to the
+  database if an exception is thrown. Wait 500ms between each  [SJF 2007-11-28]
+
+* Added graphical indication of slew path to Az/El indicator   [SJF 2007-11-29]
+
+* Added timestamp to verbose printout for RPM                  [SJF 2008-01-08]
+
+* New default for GRB observations                             [SJF 2008-01-29]
+
+* Added preferred rotation direction to single telescope code  [SJF 2008-01-29]
+
+* Added array rotation direction consistency                   [SJF 2008-01-30]
+
+* Added moon phase to moon indicator                           [SJF 2008-01-31]
+
+* NEWS->NSEW                                                   [SJF 2008-02-07]
+
+* Sorting of target names in table now ignores spaces          [SJF 2008-02-07]
+
+* Fix MAJOR bug in GRB monitor which causes constant segfault  [SJF 2008-02-08]
+
+* Added CV target to array GUI                                 [SJF 2008-02-08]
+
+* Extended range of Az offset search in CP solver to 18deg     [SJF 2008-02-08]
+
+* Fixed GRB auto-selection of wobble raises widget on stack    [SJF 2008-02-10]
+
+* Added flashing GRB warning in tab pane when GRB is <3hrs old [SJF 2008-02-10]
+
+* Added indication of preferred direction. V1.5.0pre3          [SJF 2008-02-10]
+
+* Added NSEW button to cycle between N->S->E->W wobble         [SJF 2008-02-12]
+
+* Extended GRB data class                                      [TA  2009-02-06]
+
+* Removed moon restriction on GRB alert window                 [JP  2009-04-29]
+
+* New algorithm to choose slew direction in array auto. V1.5.1 [SJF 2009-05-02]
+
+* Clear preferred direction when tracking                      [SJF 2010-04-20]
+
+* Add orbit offset type. Refactor much code for this.          [SJF 2010-10-28]
+
+*******************************************************************************
+*                                    TO DO                                    *
+*******************************************************************************
+
+- - - - - - - - - - - - - - - - HIGHER PRIORITY - - - - - - - - - - - - - - - -
+
+* Have GRB message come up no matter what the time
+
+* Add a GRB warning like the Sun/Moon warning
+
+- - - - - - - - - - - - - - - -  LOWER PRIORITY - - - - - - - - - - - - - - - -
+
+* Source observability plot
+
+* "Fix" oscilloscope frequency
+
+* Add CLO for realtime scheduling
+
+* CORBA messenger *should* use TASK
+
+* Add LOCALDIR to Makefile.common
+
+* Fix meaning of Aff/Vff in PIDVff
+
+* Readonly TelescopeControllerLocal
+
+* RAMP DOWN on exit -- prepareToExit and safeToExit
+
+* Catch ctrl-c and exit gracefully
+
+* Add RPM control protocol
+
+* Fix relay *OUTPUT* in EIA and PIU protocols
+
+* Migrate to QT4 when QWT5 becomes available
+
+* Oscillation monitor
+
+- - - - - - - - - - - - - - - - COSMETIC CHANGES  - - - - - - - - - - - - - - -
+
+* Make elevation display widget go from -5 to 95 degrees
+
+* TelescopeEmulator should use PLL as base
+
+* New "MainSingleTelescope" base class for MainController, 
+  MainEmulator and MainFailsafe
+
+* Fix the solver progress dialog animation
+
+* Add smarter size calculation (dependent on font size)
+
+* Add Cable wrap warning in bottom bar and in az/el drive status boxes
+
+* Replace as many pixmaps by widgets as possible

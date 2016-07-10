@@ -1,0 +1,70 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_VGRBMonitor.idl
+ * \brief CORBA interface to the GRB monitoring software
+ *
+ * Original Author: Stephen Fegan
+ * $Author: sfegan $
+ * $Date: 2007/01/26 13:02:13 $
+ * $Revision: 2.2 $
+ * $Tag$
+ *
+ **/
+
+#ifndef NET_VGRBMONITOR_IDL
+#define NET_VGRBMONITOR_IDL
+
+#include "NET_VGRBMonitor_data.idl"
+
+module VGRBMonitor
+{
+  // progName - name of subsystem program.
+  const string progName = "GRBMonitor";
+
+  interface Command
+  {
+    //! Ping the server to see if it is alive. 
+    void nAlive();
+
+    //! Slightly more advanced "ping", returns the state of the connection
+    // with the GCN, the time since receipt of the last packet and the uptime
+    // of the server is returned.
+    void nGetStatus(out boolean gcn_connection_is_up, 
+		    out unsigned long time_since_last_gcn_receipt_sec,
+		    out unsigned long server_uptime_sec);
+
+    //! Get trigger sequence number of next interesting GRB which
+    // occurred since some specified sequence number. The GRBMonitor
+    // may internally limit the GRBs it considers interesting by age, or
+    // by some other criteria. If no GRB triggers satisfy the criteria
+    // then zero is returned. So, for example, a client program could connect
+    // and call "nGetNextTriggerSequenceNumber(0)", in which case the the
+    // monitor might return "100", indicating that the first interesting
+    // GRB is number 100. The client might then call
+    // "nGetNextTriggerSequenceNumber(100)" and get "101" back etc.. At
+    // some point a call, say "nGetNextTriggerSequenceNumber(112)", would
+    // return zero indicating that there are no more interesting triggers.
+
+    unsigned long 
+    nGetNextTriggerSequenceNumber(in unsigned long first_sequence_number);
+
+    //! Get all GDB triggers which occurred since the specified unique
+    // sequence number. The GRBMonitor may also limit the GRBs returned
+    // internally by age. Returns a sequence of VGRBTrigger structures
+    // containing the GRB information.
+
+    GRBTrigger nGetOneTrigger(in unsigned long unique_sequence_number)
+      raises (GRBNoSuchTrigger);
+
+    //! Allow clients to insert  trigger into the system, ostensibly
+    // for training of new observers
+    void nInsertOneTrigger(in GRBTrigger trigger);
+
+    // objName - name of this object
+    const string objName = "Command";
+  };
+
+};
+
+#endif // NET_VGRBMONITOR_IDL

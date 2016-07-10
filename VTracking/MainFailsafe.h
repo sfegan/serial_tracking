@@ -1,0 +1,51 @@
+//-*-mode:c++; mode:font-lock;-*-
+
+/**
+ * \file MainFailsafe.h
+ * \ingroup VTracking
+ * \brief This is a one-line description of this cpp file.
+ *
+ * Here is a tedious verbose multi-line description of all the details
+ * of the code, more than you would ever want to read. Generally, all
+ * the important documentation goes in the .cpp files.
+ *
+ * Original Author: Stephen Fegan
+ * $Author: sfegan $
+ * $Date: 2006/04/04 17:06:58 $
+ * $Revision: 2.0 $
+ * $Tag$
+ *
+ **/
+
+#ifndef VTRACKING_MAINFAILSAFE_H
+#define VTRACKING_MAINFAILSAFE_H
+
+#include"Main.h"
+
+namespace VTracking
+{
+
+  // ==========================================================================
+  // FAILSAFE CLASS
+  // ==========================================================================
+
+  class MainFailsafe: public Main
+  {
+  public:
+    MainFailsafe();
+    virtual ~MainFailsafe();
+    virtual int main(int argc, char** argv);
+    static void configure(VERITAS::VSOptions& options);
+  private:
+    unsigned                   m_verbose;
+    unsigned                   m_scope_id;
+    Protocol                   m_protocol;
+    std::string                m_datastream;
+    SEphem::SphericalCoords    m_earth_pos;
+    StowObjectVector           m_stow_pos;
+    double                     m_az_key;
+  };
+
+}
+
+#endif // VTRACKING_MAINEMULATOR_H

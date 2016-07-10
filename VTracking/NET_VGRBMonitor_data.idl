@@ -1,0 +1,80 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_VGRBMonitor_data.idl 
+ *
+ * \brief Structs and other types for the CORBA interface to the GRB
+ * monitor
+ *
+ * Original Author: Stephen Fegan
+ * $Author: aune $
+ * $Date: 2009/02/26 22:43:45 $
+ * $Revision: 2.3 $
+ * $Tag$
+ *
+ **/
+
+#ifndef NET_VGRBMONITOR_DATA_IDL
+#define NET_VGRBMONITOR_DATA_IDL
+
+exception GRBNoSuchTrigger { };
+
+struct GRBTrigger
+{
+  //! Unique sequential number for this alert (local to VERITAS). Can
+  // be used to query 
+  unsigned long veritas_unique_sequence_number;
+
+  //! MJD at the time of receipt of the packet at VERITAS
+  unsigned long veritas_receipt_mjd_int;
+
+  //! Number of milli-seconds into the day at the time of receipt of
+  //  the packet at VERITAS
+  unsigned long veritas_receipt_msec_of_day_int;
+
+  //! GCN trigger sequence number
+  long trigger_gcn_sequence_number;
+
+  //! Name of instrument triggering GRB alert
+  string trigger_instrument;
+
+  //! Instrument dependent trigger type
+  string trigger_type;
+  
+  //! MJD at the time of trigger of instrument
+  unsigned long trigger_time_mjd_int;
+
+  //! Number of milli-seconds into the day at the time of trigger of
+  //  instrument
+  unsigned long trigger_msec_of_day_int;
+
+  //! Right ascension of the GRB in degrees
+  double coord_ra_deg;
+
+  //! Declination of the GRB in degrees
+  double coord_dec_deg;
+
+  //! Epoch of the GRB in the Julian precessional scheme
+  double coord_epoch_J;
+
+  //! Size of the coordinate error circle in degrees. Zero if unavailable.
+  double coord_error_circle_deg;
+
+  //! The most likely source_object class. 
+  //  See http://gcn.gsfc.nasa.gov/sock_pkt_def_doc.html for more info.
+  short most_likely_source_obj;
+
+  //! The confidence level that the class assignment is correct (1 - 100)
+  short source_obj_confidence_level;
+
+  //! Flag indicating that GRB should be observed by VERITAS if above
+  // the horizon.
+  boolean veritas_should_observe;
+
+  //! VERITAS observation window after trigger time, in hours
+  double veritas_observation_window_hours;
+};
+
+typedef sequence<GRBTrigger> GRBTriggerSeq;
+
+#endif // NET_VGRBMONITOR_DATA_IDL

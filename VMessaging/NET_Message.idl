@@ -1,0 +1,31 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+#ifndef VMESSAGING_NET_MESSAGE_IDL
+#define VMESSAGING_NET_MESSAGE_IDL
+
+module VMessaging
+{
+
+  enum NET_DistributionRealm 
+  { NET_DR_LOCAL, NET_DR_GLOBAL };
+  enum NET_PayloadSignificance
+  { NET_PS_ROUTINE, NET_PS_UNUSUAL, NET_PS_EXCEPTIONAL, NET_PS_CRITICAL };
+  
+  struct NET_Message
+  {
+    long                    zone;
+    string                  hostname;
+    string                  program;
+    string                  title;
+    NET_DistributionRealm   realm;
+    NET_PayloadSignificance significance;
+    string                  message;
+    string                  details;
+    string                  function;
+    long                    tv_sec;
+    long                    tv_usec;
+  };
+
+}; // module VMessaging
+
+#endif // VMESSAGING_NET_MESSAGE_IDL

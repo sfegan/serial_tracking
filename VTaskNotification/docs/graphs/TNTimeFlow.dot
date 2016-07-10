@@ -1,0 +1,20 @@
+digraph TaskNotification
+{
+	rankdir=LR;
+	rank=same;
+	fontname=Helvetica;
+	node [fontname=Helvetica, shape=ellipse, color=black];
+	edge [fontname=Helvetica];	
+
+	newTask      [label="Create MyTaskNotification\ninstance"];
+	postTask     [label="Schedule\ntask"];
+
+	execTask     [label="Execute\ntask"];
+
+	execNote     [label="Execute\nnotification"];
+
+	newTask -> postTask -> execTask -> execNote;
+
+	subgraph clustrThreadTask { style=dashed; label="Task thread"; execTask };
+	subgraph clustrThreadMain { style=dashed; label="GUI\nthread"; newTask postTask execNote };
+};

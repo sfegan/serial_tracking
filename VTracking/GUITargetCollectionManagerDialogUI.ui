@@ -1,0 +1,244 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>GUITargetCollectionManagerDialogUI</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>GUITargetCollectionManagerDialogUI</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>741</width>
+            <height>526</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Target collection manager</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout9</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout7</cstring>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&lt;h3&gt;Source collection&lt;/h3&gt;</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>comboSrc</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QListBox">
+                            <property name="name">
+                                <cstring>listSrc</cstring>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout5</cstring>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer4</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Vertical</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>21</width>
+                                    <height>161</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>pushButtonTo</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image0</pixmap>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton">
+                            <property name="name">
+                                <cstring>pushButtonFrom</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="text">
+                                <string></string>
+                            </property>
+                            <property name="pixmap">
+                                <pixmap>image1</pixmap>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer4_2</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Vertical</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>21</width>
+                                    <height>161</height>
+                                </size>
+                            </property>
+                        </spacer>
+                    </vbox>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout8</cstring>
+                    </property>
+                    <vbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&lt;h3&gt;Target collection&lt;/h3&gt;</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <property name="name">
+                                <cstring>comboTar</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QListBox">
+                            <property name="name">
+                                <cstring>listTar</cstring>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>buttonClose</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Close</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="276">89504e470d0a1a0a0000000d4948445200000020000000240806000000e8eb38e2000000db494441545885c5985b0a85300c4453714f829b745785bb2aef57214a4d5f93c97c097e78381d6d6a12b96e11919c8f2401d9cac579feee0880540ce8306d540198209b7593b12ca6011d2f1bdd005e20c3006810b3035650fd9836a0b3620302b0020205980199ee8095917eb818d069d970076881d000be405c3a60e5dd0fba019d9c8f4437f0ce1ef150dd032a40ed4da00058df02f70eb43e446e067af70338c0e88e0803989d09201d581948960c20e6c22900e4643cbc04e8b1bcdb80d7c1a409e07d3efc04609d90ab1d601ecf1f0622fe92ec510f2ef903a3d054b0d808901f0000000049454e44ae426082</data>
+    </image>
+    <image name="image1">
+        <data format="PNG" length="261">89504e470d0a1a0a0000000d4948445200000020000000240806000000e8eb38e2000000cc494441545885c596d10dc3300844cf55778a94fd8594a99a9f20b5aa1363c3010bbca733069a88a0a2f6fdf800c0ab120e00ef2a70aa400fac457f822738404c6004a60958c1e102b360ad901e588503ce043c6097400478492012ac65ee01061c3024c0020f05d8e05b812cb0d64f0f64c3812b810ab056c941f22720b23591ad9509685588749f2053e4b1073224864dc84ec3fc0b5822d3df305a64790e4449b80651441a2193d023123a8a5724c277c16c1ab4656415a16fc39148da3abe9348bd077a69941c24df2227ebd35fe2a8e13a490000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>buttonClose</sender>
+        <signal>clicked()</signal>
+        <receiver>GUITargetCollectionManagerDialogUI</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

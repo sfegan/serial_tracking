@@ -1,0 +1,27 @@
+digraph QtAsyncAlerter {
+	fontname=Helvetica;
+	node [fontname=Helvetica, shape=ellipse, color=black];
+	edge [fontname=Helvetica];	
+
+	sendAlert    [label="QtAsyncAlerter\nsendAlert()"];
+	receiveAlert [label="QtAsyncAlerter\nreceiveAlert()"];
+
+	sendNotice   [label="QtGUIThreadNotifier\nsendNotice()"];
+	pipeWrite    [label="Unamed Pipe\nwrite()", shape=box, color=red];
+	eventLoop    [label="Qt Event Loop\nselect()", shape=box, color=red];
+	notifier     [label="QSocketNotifier\nSIGNAL activated(int)", shape=box, color=red];
+	gotReadNot   [label="QtGUIThreadNotifier\nSLOT gotReaderNotification()"];
+	gotNotice    [label="QtGUIThreadNotifier\nSIGNAL gotNotice()"];
+	gotGUIThNot  [label="QtAsyncAlerter\nSLOT gotGUIThreadNotifier()"];
+	
+	sendAlert -> sendNotice -> pipeWrite;
+	pipeWrite -> eventLoop [color=red, fontcolor=red, label="O.S."];
+	eventLoop -> notifier [color=red, fontcolor=red, label="Qt"]
+	notifier -> gotReadNot [color=red, fontcolor=red, label="Qt"] 
+	gotReadNot -> gotNotice [label="emit"];
+	gotNotice -> gotGUIThNot [color=red, fontcolor=red, label="Qt"];
+	gotGUIThNot -> receiveAlert;
+
+	subgraph clusterThreadTask { style=dashed; label="Task thread"; sendAlert sendNotice pipeWrite };
+	subgraph clusterThreadmain { style=dashed; label="GUI\nthread"; eventLoop notifier gotReadNot gotNotice gotGUIThNot receiveAlert };
+};

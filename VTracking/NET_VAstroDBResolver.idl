@@ -1,0 +1,73 @@
+//-*-mode:idl; mode:font-lock;-*-
+
+/**
+ * \file NET_VAstroDBResolver.idl
+ * \brief CORBA interface to the astro DB resolver
+ *
+ * Original Author: Stephen Fegan
+ * $Author: sfegan $
+ * $Date: 2007/04/09 16:57:10 $
+ * $Revision: 2.1 $
+ * $Tag$
+ *
+ **/
+
+#ifndef NET_VASTRODBRESOLVER_IDL
+#define NET_VASTRODBRESOLVER_IDL
+
+module VAstroDBResolver
+{
+  // progName - name of subsystem program.
+  const string progName = "AstroDBResolver";
+
+  typedef string ObjectName;
+  typedef string ResolverName;
+  typedef sequence<ObjectName> ObjectNameSeq;
+  typedef string ObjectType;
+  typedef double AngleRad;
+  typedef double Epoch;
+
+  struct ObjectInfo
+  {
+    //! Name of the resolver that filled the request
+    ResolverName      resolver;
+    
+    //! Offical object name
+    ObjectName        name;
+
+    //! Object aliases
+    ObjectNameSeq     aliases;
+
+    //! Object type
+    ObjectType        type;
+
+    //! Right ascension [radians]
+    AngleRad          ra_rad;
+
+    //! Declination [radians]
+    AngleRad          dec_rad;
+
+    //! Epoch in the Julian precessional scheme [years]
+    Epoch             epoch_J;
+  };
+
+  typedef sequence<ObjectInfo> ObjectInfoSeq;
+
+  exception ResolveFailed { };
+
+  interface Command
+  {
+    //! Ping the server to see if it is alive.
+    void nAlive();
+
+    //! Attempt to resolve object and return sequence of possible
+    //  matches.
+    ObjectInfoSeq resolve(in ObjectName object_name) raises(ResolveFailed);
+
+    // objName - name of this object
+    const string objName = "Command";
+  };
+
+};
+
+#endif
