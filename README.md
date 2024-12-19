@@ -16,17 +16,26 @@ It has a number of modes of functionment:
   an integrated telescope controller loop.
 - Positioner emulator, to simulate the motion-control system and allow testing of the system.
 
-## Array GUI ##
+## Array GUI - primary display ##
 
 ![Array interface](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/array_gui.png?raw=true)
 
 ## Scope GUI - summary ##
 
-![Scope interface](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/scope_gui_summary.png?raw=true)
+![Scope summary](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_summary.png?raw=true)
+
+## Scope GUI - details ##
+
+![Scope details](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_details.png?raw=true)
+
+## Scope GUI - target selection ##
+
+![Target selection](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_targets.png?raw=true)
 
 ## Scope GUI - corrections ##
 
-![Scope corrections](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/scope_gui_corrections.png?raw=true)
+![Pointing corrections](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_corrections.png?raw=true)
 
+## Scope GUI - tracking model data taking ##
 
-
+![Pointing corrections](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_measurements.png?raw=true)
