@@ -20,7 +20,7 @@ It has a number of modes of functionment:
 
 ![Array interface](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/array_gui.png?raw=true)
 
-## Scope GUI - summary ##
+## Scope GUI - summary (the Trevor-style display) ##
 
 ![Scope summary](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/graphics/screen_summary.png?raw=true)
 
