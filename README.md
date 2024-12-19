@@ -5,7 +5,7 @@ It is used by the observers on duty to select targets, move and stop the telesco
 objects in the sky, etc. It communicates with the VERITAS database and array control interface, and with the
 commercial motion control systems in the pedestals of the telescopes.
 
-It has a number of modes of functionment:
+It has a number of modes of operation:
 
 - Array GUI, allowing supervision of all for VERITAS telescopes from one interface using CORBA calls to the
   individual telescope controllers
