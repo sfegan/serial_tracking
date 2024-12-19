@@ -18,4 +18,15 @@ It has a number of modes of functionment:
 
 ## Array GUI ##
 
-![Array interface](https://github.com/sfegab/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/array_gui.png?raw=true)
+![Array interface](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/array_gui.png?raw=true)
+
+## Scope GUI - summary ##
+
+![Scope interface](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/scope_gui_summary.png?raw=true)
+
+## Scope GUI - corrections ##
+
+![Scope corrections](https://github.com/sfegan/serial_tracking/blob/main/VTracking/Doc/tucson_techtalk/scope_gui_corrections.png?raw=true)
+
+
+
