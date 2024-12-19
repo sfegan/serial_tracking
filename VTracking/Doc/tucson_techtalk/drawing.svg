@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/sfegan/Writing/Talks/08_TUCSON_TECH"
+   sodipodi:docname="drawing.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="872"
+     inkscape:window-height="625"
+     inkscape:window-x="312"
+     inkscape:window-y="140" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path2178"
+       sodipodi:cx="74.285713"
+       sodipodi:cy="212.36218"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="286.31366"
+       sodipodi:argument="-18.220026"
+       sodipodi:t0="0"
+       d="M 74.285713,212.36218 C 85.889174,220.81409 68.617456,232.17329 60.238095,231.6479 C 37.530546,230.22413 29.586742,202.67348 35.714283,184.26695 C 46.675016,151.34198 87.002961,141.34936 116.42857,154.50504 C 159.61183,173.81153 171.9162,228.38909 151.42857,268.55265 C 124.12179,322.08437 54.852179,336.73619 4.0476228,308.79076 C -59.884726,273.62429 -76.896186,189.4765 -41.428578,128.07647 C 1.527447,53.712815 100.64905,34.335246 172.61904,77.362176 C 257.43319,128.06792 279.18098,242.21904 228.57144,324.74313 C 170.14071,420.02045 40.924732,444.14133 -52.14285,385.93362 C -157.89215,319.79432 -184.3882,175.48963 -118.57144,71.886002 C -44.734986,-44.341609 114.67528,-73.214385 228.80951,0.21931476 C 355.52014,81.74464 386.77086,256.27286 305.7143,380.9336"
+       transform="translate(274.28571,145.71429)" />
+    <path
+       sodipodi:type="spiral"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path2180"
+       sodipodi:cx="202.85715"
+       sodipodi:cy="292.36218"
+       sodipodi:expansion="1"
+       sodipodi:revolution="3"
+       sodipodi:radius="408.00159"
+       sodipodi:argument="-18.203253"
+       sodipodi:t0="0"
+       d="M 202.85715,292.36218 C 219.18793,304.68192 194.30742,320.45388 182.38093,319.50502 C 150.06089,316.93367 139.40092,277.48921 148.57147,251.40975 C 164.97544,204.75972 222.67416,191.48595 264.28579,210.93367 C 325.35253,239.47398 341.57954,317.53104 311.4285,374.26704 C 271.24191,449.8872 172.19528,469.10773 100.47608,428.07637 C 10.224775,376.44259 -12.002205,256.14091 40.000121,169.5049 C 102.98191,64.577079 244.67506,39.33672 346.19065,102.36232 C 465.82326,176.63581 494.08154,339.7999 419.99985,456.1719 C 334.46961,590.52797 149.78415,621.80739 18.571217,536.64772 C -130.52125,439.88389 -164.82421,233.64302 -68.571229,87.600038 C 39.410063,-76.238121 267.2304,-113.56644 428.09551,-6.2090316 C 606.68626,112.97804 647.04138,362.39552 528.5712,538.07676"
+       transform="matrix(0.6267594,0,0,0.6274922,185.47879,394.88684)" />
+  </g>
+</svg>
